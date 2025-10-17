@@ -25,7 +25,7 @@ export function useApproval(tokenAddress: Address, spenderAddress: Address) {
     error: approveError 
   } = useWriteContract();
 
-  // ⏳ 等待交易确认
+  // ⏳ 等待Trade confirmation
   const { 
     isLoading: isApproveConfirming, 
     isSuccess: isApproveSuccess 
@@ -75,7 +75,7 @@ export function useApproval(tokenAddress: Address, spenderAddress: Address) {
     });
   }, [writeContract, tokenAddress, spenderAddress, userAddress]);
 
-  // 🔍 检查是否需要授权
+  // 🔍 Check if approval is needed
   const checkNeedsApproval = useCallback((amount: string, decimals: number): boolean => {
     return needsApproval(amount, decimals);
   }, [needsApproval]);

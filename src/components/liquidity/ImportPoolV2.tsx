@@ -627,7 +627,7 @@ export default function ImportPoolV2() {
         </EmptyState>
       )}
 
-      {/* 代币选择模态框 */}
+      {/* Token selection模态框 */}
       <TokenSelectModal
         isOpen={showTokenAModal}
         onClose={() => setShowTokenAModal(false)}

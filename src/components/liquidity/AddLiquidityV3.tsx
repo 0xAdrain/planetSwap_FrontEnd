@@ -269,7 +269,7 @@ const AddLiquidityButton = styled(motion.button)`
 `
 
 /**
- * 🥞 PancakeSwap V3风格的添加流动性界面
+ * 🥞 PancakeSwap V3风格的Add liquidity界面
  * 完整实现集中流动性、手续费等级、价格区间功能
  */
 export default function AddLiquidityV3() {
@@ -294,7 +294,7 @@ export default function AddLiquidityV3() {
   const [showTokenBModal, setShowTokenBModal] = useState(false)
   const [showSettings, setShowSettings] = useState(false)
 
-  // 🎯 获取代币余额
+  // 🎯 Get token balance
   const { data: balanceA } = useBalance({
     address,
     token: tokenA?.isNative ? undefined : tokenA?.address as `0x${string}`,
@@ -318,7 +318,7 @@ export default function AddLiquidityV3() {
     }
   }, [tokens, tokenA, tokenB])
 
-  // 🎯 代币选择处理
+  // 🎯 Token selection处理
   const handleTokenASelect = useCallback((token: Token) => {
     if (token.address === tokenB?.address) {
       setTokenB(tokenA)
@@ -369,7 +369,7 @@ export default function AddLiquidityV3() {
     setSelectedFeeTier(feeTier)
   }, [])
 
-  // 🎯 添加流动性处理
+  // 🎯 Add liquidity处理
   const handleAddLiquidity = useCallback(async () => {
     if (!tokenA || !tokenB || !amountA || !amountB || !selectedFeeTier) {
       console.error('❌ 缺少必要参数')
@@ -387,12 +387,12 @@ export default function AddLiquidityV3() {
         currentPrice
       })
 
-      // TODO: 实现V3添加流动性逻辑
+      // TODO: 实现V3Add liquidity逻辑
       // 1. 检查池子是否存在，不存在则创建
       // 2. 计算tick范围
-      // 3. 授权代币
+      // 3. Approve token
       // 4. 调用V3 Position Manager的mint函数
-      // 5. 处理交易确认
+      // 5. 处理Trade confirmation
       
       alert('V3 liquidity addition coming soon!')
       
@@ -435,7 +435,7 @@ export default function AddLiquidityV3() {
         </V3InfoText>
       </V3InfoSection>
 
-      {/* Fee Tier选择 - 必须在代币选择之前 */}
+      {/* Fee Tier选择 - 必须在Token selection之前 */}
       <V3FeeTierSelector
         tokenA={tokenA}
         tokenB={tokenB}
@@ -558,7 +558,7 @@ export default function AddLiquidityV3() {
         </PositionPreview>
       )}
 
-      {/* 添加流动性按钮 */}
+      {/* Add liquidity按钮 */}
       <AddLiquidityButton
         disabled={!canAddLiquidity}
         onClick={handleAddLiquidity}
@@ -567,7 +567,7 @@ export default function AddLiquidityV3() {
         {getButtonText()}
       </AddLiquidityButton>
 
-      {/* 代币选择模态框 */}
+      {/* Token selection模态框 */}
       <TokenSelectModal
         isOpen={showTokenAModal}
         onClose={() => setShowTokenAModal(false)}

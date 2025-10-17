@@ -14,7 +14,7 @@ export interface LiquidityParams {
 }
 
 /**
- * 🥞 PancakeSwap风格的流动性管理Hook
+ * 🥞 PancakeSwap风格的Liquidity managementHook
  * 处理V2流动性的添加和移除操作
  */
 export function useLiquidityCallback() {
@@ -24,7 +24,7 @@ export function useLiquidityCallback() {
   const { writeContract: writeApproval, data: approvalTxHash } = useWriteContract()
   const { writeContract: writeLiquidity, data: liquidityTxHash } = useWriteContract()
   
-  // 🎯 交易确认监听
+  // 🎯 Trade confirmation监听
   const { isLoading: isApprovalLoading, isSuccess: isApprovalSuccess, error: approvalError } = 
     useWaitForTransactionReceipt({ hash: approvalTxHash })
   
@@ -81,7 +81,7 @@ export function useLiquidityCallback() {
     }
   }, [address, routerAddress, writeApproval])
 
-  // 🎯 添加流动性
+  // 🎯 Add liquidity
   const executeAddLiquidity = useCallback(async (params: LiquidityParams) => {
     if (!address || !routerAddress) {
       console.error('❌ 缺少地址信息:', { address, routerAddress })
@@ -89,7 +89,7 @@ export function useLiquidityCallback() {
     }
 
     try {
-      console.log('💧 执行添加流动性:', params)
+      console.log('💧 执行Add liquidity:', params)
 
       const { tokenA, tokenB, amountA, amountB, slippage } = params
       
@@ -154,12 +154,12 @@ export function useLiquidityCallback() {
 
       return true
     } catch (error: any) {
-      console.error('❌ 添加流动性失败:', error)
+      console.error('❌ Add liquidity失败:', error)
       return false
     }
   }, [address, routerAddress, writeLiquidity])
 
-  // 🎯 移除流动性
+  // 🎯 Remove liquidity
   const executeRemoveLiquidity = useCallback(async (
     tokenA: Token,
     tokenB: Token,
@@ -172,19 +172,19 @@ export function useLiquidityCallback() {
     }
 
     try {
-      console.log('📤 执行移除流动性:', {
+      console.log('📤 执行Remove liquidity:', {
         tokenA: tokenA.symbol,
         tokenB: tokenB.symbol,
         liquidityAmount,
         slippage
       })
 
-      // TODO: 实现移除流动性逻辑
+      // TODO: 实现Remove liquidity逻辑
       // 需要获取LP代币合约地址和余额
       
       return true
     } catch (error: any) {
-      console.error('❌ 移除流动性失败:', error)
+      console.error('❌ Remove liquidity失败:', error)
       return false
     }
   }, [address, routerAddress])
@@ -195,7 +195,7 @@ export function useLiquidityCallback() {
     executeAddLiquidity,
     executeRemoveLiquidity,
     
-    // 🎯 交易状态
+    // 🎯 Trading state
     approvalTxHash,
     liquidityTxHash,
     isApprovalLoading,

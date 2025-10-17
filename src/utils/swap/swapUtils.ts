@@ -110,7 +110,7 @@ export function findBestRoute(
     hops: 1
   });
   
-  // 通过WOKB的路径（如果不是WOKB交易对）
+  // 通过WOKB的路径（如果不是WOKBTrading pair）
   const wokb = availableTokens.find(token => token.symbol === 'WOKB');
   if (wokb && tokenIn.symbol !== 'WOKB' && tokenOut.symbol !== 'WOKB') {
     routes.push({
@@ -190,7 +190,7 @@ export function formatUSDValue(
   }
 }
 
-// 🔄 反转交易对
+// 🔄 反转Trading pair
 export function reverseSwapPair<T>(tokenA: T, tokenB: T): [T, T] {
   return [tokenB, tokenA];
 }
@@ -229,7 +229,7 @@ export function validateSwapAmount(
   return { valid: true };
 }
 
-// 📊 默认滑点设置
+// 📊 默认Slippage settings
 export const DEFAULT_SLIPPAGE_SETTINGS: SlippageSettings = {
   auto: true,
   custom: 0.5,

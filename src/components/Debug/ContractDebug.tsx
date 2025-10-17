@@ -121,7 +121,7 @@ export default function ContractDebug() {
 
       <Section>
         <Title>🏊‍♂️ 诊断建议</Title>
-        {!isConnected && <Info>❗ 请先连接钱包</Info>}
+        {!isConnected && <Info>❗ 请先Connect wallet</Info>}
         {isConnected && error && <Info>❗ 当前网络不支持，请切换到 X Layer Testnet</Info>}
         {isConnected && !error && tokens.length === 0 && <Info>❗ 代币列表未加载</Info>}
         {isConnected && !error && tokens.length > 0 && !factoryData && <Info>❗ 合约调用失败，检查合约地址和ABI</Info>}

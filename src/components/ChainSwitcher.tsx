@@ -1,5 +1,5 @@
-// 🌍 链切换组件
-// 支持多链切换，当前专注 X Layer Testnet
+// 🌍 Chain Switcher Component
+// Supports multi-chain switching, currently focused on X Layer Testnet
 
 import React from 'react';
 import { useAccount, useChainId, useSwitchChain } from 'wagmi';
@@ -21,25 +21,25 @@ export const ChainSwitcher: React.FC<ChainSwitcherProps> = ({ className = '' }) 
   const currentChainId = useChainId();
   const { switchChain, isPending } = useSwitchChain();
 
-  // 获取当前链信息
+  // Get current chain information
   const currentChain = getChain(currentChainId as ChainId);
   const isCurrentChainSupported = isSupportedChain(currentChainId as ChainId);
 
-  // 处理链切换
+  // Handle chain switching
   const handleSwitchChain = (chainId: ChainId) => {
     if (switchChain) {
       switchChain({ chainId });
     }
   };
 
-  // 如果未连接钱包，不显示组件
+  // Don't display component if wallet is not connected
   if (!isConnected) {
     return null;
   }
 
   return (
     <div className={`chain-switcher ${className}`}>
-      {/* 当前链显示 */}
+      {/* Current chain display */}
       <div className="current-chain">
         <div 
           className={`chain-indicator ${
@@ -63,7 +63,7 @@ export const ChainSwitcher: React.FC<ChainSwitcherProps> = ({ className = '' }) 
         </div>
       </div>
 
-      {/* 支持的链列表 */}
+      {/* Supported chains list */}
       {!isCurrentChainSupported && (
         <div className="supported-chains">
           <h4>Switch to supported network:</h4>
@@ -73,9 +73,7 @@ export const ChainSwitcher: React.FC<ChainSwitcherProps> = ({ className = '' }) 
                 key={chain.id}
                 onClick={() => handleSwitchChain(chain.id as ChainId)}
                 disabled={isPending}
-                className={`chain-option ${
-                  currentChainId === chain.id ? 'active' : ''
-                }`}
+                className={`chain-option ${\n                  currentChainId === chain.id ? 'active' : ''\n                }`}
               >
                 <div className="chain-option-info">
                   <span className="chain-name">{chain.name}</span>

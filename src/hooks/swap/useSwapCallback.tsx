@@ -169,7 +169,7 @@ export function useSwapCallback() {
       
       // 如果都是ERC20代币
       if (!input.isNative && !output.isNative) {
-        // 检查是否存在直接交易对
+        // 检查是否存在直接Trading pair
         const directPairs = [
           { token0: 'mWOKB', token1: 'mUSDT' },
           { token0: 'mWOKB', token1: 'mUSDC' },

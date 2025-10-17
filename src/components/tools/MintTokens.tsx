@@ -312,7 +312,7 @@ export const MintTokens: React.FC = () => {
         {!isConnected && (
           <StatusMessage type="info">
             <ExclamationTriangleIcon width={20} height={20} />
-            请先连接钱包到X Layer Testnet
+            请先Connect wallet到X Layer Testnet
           </StatusMessage>
         )}
 
@@ -386,7 +386,7 @@ export const MintTokens: React.FC = () => {
         {isConfirming && (
           <StatusMessage type="info">
             <ArrowPathIcon width={20} height={20} className="animate-spin" />
-            交易确认中...
+            Trade confirmation中...
           </StatusMessage>
         )}
 

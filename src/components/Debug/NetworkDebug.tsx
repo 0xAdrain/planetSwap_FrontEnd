@@ -80,7 +80,7 @@ export const NetworkDebug: React.FC = () => {
 
   if (!isOpen) {
     return (
-      <ToggleButton onClick={() => setIsOpen(true)} title="开启调试信息">
+      <ToggleButton onClick={() => setIsOpen(true)} title="开启Debug information">
         🐛
       </ToggleButton>
     );
@@ -88,7 +88,7 @@ export const NetworkDebug: React.FC = () => {
 
   return (
     <DebugContainer>
-      <CloseButton onClick={() => setIsOpen(false)} title="关闭调试信息">
+      <CloseButton onClick={() => setIsOpen(false)} title="关闭Debug information">
         ×
       </CloseButton>
       

@@ -60,7 +60,7 @@ export const xLayerTestnet = defineChain({
   testnet: true,
 })
 
-// 🎯 当前支持的链列表
+// 🎯 当前Supported chains list
 export const supportedChains = [
   xLayerTestnet,     // 🎯 主要测试网 (X Layer - 已修复)
   sepoliaTestnet,    // 🧪 备用测试网 (Sepolia)

@@ -296,7 +296,7 @@ function TradingStats() {
 
       <TopPairsSection>
         <SectionTitle>
-          🏆 热门交易对
+          🏆 热门Trading pair
         </SectionTitle>
         <PairsList>
           {topPairs.map((pair, index) => (

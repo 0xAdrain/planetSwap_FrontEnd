@@ -1,11 +1,11 @@
-// 🪙 PlanetSwap 多链代币配置
-// 根据不同网络动态加载代币列表
+// 🪙 PlanetSwap Multi-chain Token Configuration
+// Dynamically load token lists based on different networks
 
 import { Address } from 'viem';
 import { ChainId } from '../chains/chainId';
 import { getContractAddresses } from '../chains/contracts';
 
-// 💻 本地测试网代币配置
+// 💻 Local testnet token configuration
 export const LOCALHOST_TOKENS: Token[] = [
   {
     address: '0x0000000000000000000000000000000000000000' as Address,
@@ -59,7 +59,7 @@ export const LOCALHOST_TOKENS: Token[] = [
   }
 ];
 
-// 🪙 代币接口定义
+// 🪙 Token interface definition
 export interface Token {
   address: Address;
   symbol: string;
@@ -71,7 +71,7 @@ export interface Token {
   isNative?: boolean;
 }
 
-// 🧪 Sepolia 测试网代币配置
+// 🧪 Sepolia testnet token configuration
 export const SEPOLIA_TOKENS: Token[] = [
   {
     address: '0x0000000000000000000000000000000000000000' as Address,
@@ -87,10 +87,10 @@ export const SEPOLIA_TOKENS: Token[] = [
     name: 'Wrapped Ether',
     decimals: 18,
   },
-  // 测试代币将在部署后动态添加
+  // Test tokens will be dynamically added after deployment
 ];
 
-// 🌊 X Layer 测试网代币配置 
+// 🌊 X Layer testnet token configuration 
 export const XLAYER_TOKENS: Token[] = [
   {
     address: '0x0000000000000000000000000000000000000000' as Address,
@@ -145,13 +145,13 @@ export const XLAYER_TOKENS: Token[] = [
   }
 ];
 
-// 🌍 所有网络的代币配置
+// 🌍 Token configuration for all networks
 export const TOKEN_LISTS: Record<ChainId, Token[]> = {
   [ChainId.LOCALHOST]: LOCALHOST_TOKENS,
   [ChainId.SEPOLIA]: SEPOLIA_TOKENS,
   [ChainId.X_LAYER_TESTNET]: XLAYER_TOKENS,
   
-  // 其他网络默认为空列表
+  // Other networks default to empty list
   [ChainId.ETHEREUM]: [],
   [ChainId.BSC]: [],
   [ChainId.BSC_TESTNET]: [],
@@ -164,13 +164,13 @@ export const TOKEN_LISTS: Record<ChainId, Token[]> = {
   [ChainId.OPBNB_TESTNET]: [],
 };
 
-// 🛠️ 工具函数
+// 🛠️ Utility functions
 
 /**
- * 获取指定网络的代币列表
+ * Get token list for specified network
  */
 export function getTokenListForChain(chainId: ChainId): Token[] {
-  console.log('🔍 getTokenListForChain 调试:', {
+  console.log('🔍 getTokenListForChain debug:', {
     chainId,
     chainIdType: typeof chainId,
     availableChains: Object.keys(TOKEN_LISTS).map(k => ({ key: k, type: typeof k }))
@@ -227,7 +227,7 @@ export function getWrappedToken(chainId: ChainId): Token | undefined {
 }
 
 /**
- * 根据地址查找代币
+ * Find token by address
  */
 export function getTokenByAddress(chainId: ChainId, address: Address): Token | undefined {
   const tokens = getTokenListForChain(chainId);
@@ -237,7 +237,7 @@ export function getTokenByAddress(chainId: ChainId, address: Address): Token | u
 }
 
 /**
- * 根据符号查找代币
+ * Find token by symbol
  */
 export function getTokenBySymbol(chainId: ChainId, symbol: string): Token | undefined {
   const tokens = getTokenListForChain(chainId);

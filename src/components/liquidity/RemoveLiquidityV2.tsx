@@ -328,8 +328,8 @@ interface RemoveLiquidityV2Props {
 // UserLPPosition now imported from useUserLiquidity hook
 
 /**
- * 🥞 PancakeSwap V2风格的移除流动性界面
- * 完全对标PancakeSwap V2移除流动性功能
+ * 🥞 PancakeSwap V2风格的Remove liquidity界面
+ * 完全对标PancakeSwap V2Remove liquidity功能
  */
 export default function RemoveLiquidityV2({ onBack }: RemoveLiquidityV2Props) {
   const { address, isConnected } = useAccount()
@@ -376,7 +376,7 @@ export default function RemoveLiquidityV2({ onBack }: RemoveLiquidityV2Props) {
 
   const expectedOutput = calculateExpectedOutput()
 
-  // 🎯 处理移除流动性
+  // 🎯 处理Remove liquidity
   const handleRemoveLiquidity = useCallback(async () => {
     if (!selectedPool || !address) {
       console.error('❌ 缺少必要参数')
@@ -390,13 +390,13 @@ export default function RemoveLiquidityV2({ onBack }: RemoveLiquidityV2Props) {
         expectedOutput
       })
 
-      // TODO: 实现真实的移除流动性逻辑
+      // TODO: 实现真实的Remove liquidity逻辑
       // 1. 授权LP代币给Router
       // 2. 调用removeLiquidity
-      // 3. 处理交易确认
+      // 3. 处理Trade confirmation
       
     } catch (error: any) {
-      console.error('❌ 移除流动性失败:', error)
+      console.error('❌ Remove liquidity失败:', error)
     }
   }, [selectedPool, address, removePercentage, expectedOutput])
 

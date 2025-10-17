@@ -74,7 +74,7 @@ export const NetworkSwitcher: React.FC<NetworkSwitcherProps> = ({
   const chainId = useChainId();
   const { switchChain, isPending } = useSwitchChain();
 
-  // 如果没有连接钱包，显示子组件
+  // 如果没有Connect wallet，显示子组件
   if (!isConnected) {
     return <>{children}</>;
   }

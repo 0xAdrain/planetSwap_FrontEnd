@@ -234,7 +234,7 @@ export default function V3FeeTierSelector({
       volume24h: '$5.8M',
       apr: 18.6,
       poolExists: true,
-      recommended: true // 推荐用于大多数交易对
+      recommended: true // 推荐用于大多数Trading pair
     },
     {
       fee: 10000,

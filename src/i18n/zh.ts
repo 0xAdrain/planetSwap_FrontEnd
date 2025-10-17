@@ -2,7 +2,7 @@ import { Translations } from './types';
 
 export const zh: Translations = {
   // Common
-  connect: '连接钱包',
+  connect: 'Connect wallet',
   disconnect: '断开连接',
   balance: '余额',
   max: '最大',
@@ -52,7 +52,7 @@ export const zh: Translations = {
     standard: '标准池',
     custom: '特色池',
     stablecoin: '稳定币对',
-    standardPair: '标准交易对',
+    standardPair: '标准Trading pair',
     highVolatility: '高波动性',
     createPoolButton: '创建流动池',
   },

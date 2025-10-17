@@ -247,7 +247,7 @@ const LiquiditySubmitButton = styled(motion.button)`
 `
 
 /**
- * 🥞 PancakeSwap V2风格的添加流动性界面
+ * 🥞 PancakeSwap V2风格的Add liquidity界面
  * 完全参考PancakeSwap V2的设计和功能，移除所有假数据
  */
 export default function AddLiquidityV2() {
@@ -289,7 +289,7 @@ export default function AddLiquidityV2() {
     isLoading: isPoolLoading
   } = usePools(tokenA, tokenB)
   
-  // 🎯 获取代币余额
+  // 🎯 Get token balance
   const { data: balanceA } = useBalance({
     address,
     token: tokenA?.isNative ? undefined : tokenA?.address as `0x${string}`,
@@ -302,7 +302,7 @@ export default function AddLiquidityV2() {
     enabled: !!tokenB && isConnected
   })
 
-  // 🎯 检查代币授权 - TokenA
+  // 🎯 Check token allowance - TokenA
   const { data: allowanceA } = useReadContract({
     address: tokenA?.address as `0x${string}`,
     abi: [
@@ -322,7 +322,7 @@ export default function AddLiquidityV2() {
     enabled: !!(tokenA && !tokenA.isNative && address && routerAddress)
   })
 
-  // 🎯 检查代币授权 - TokenB  
+  // 🎯 Check token allowance - TokenB  
   const { data: allowanceB } = useReadContract({
     address: tokenB?.address as `0x${string}`,
     abi: [
@@ -354,7 +354,7 @@ export default function AddLiquidityV2() {
     }
   }, [tokens, tokenA, tokenB])
 
-  // 🎯 代币选择处理
+  // 🎯 Token selection处理
   const handleTokenASelect = useCallback((token: Token) => {
     if (token.address === tokenB?.address) {
       setTokenB(tokenA)
@@ -390,7 +390,7 @@ export default function AddLiquidityV2() {
     }
   }, [balanceB, tokenB])
 
-  // 🎯 检查是否需要授权
+  // 🎯 Check if approval is needed
   const needsApprovalA = tokenA && !tokenA.isNative && amountA && allowanceA !== undefined
     ? parseUnits(amountA, tokenA.decimals) > (allowanceA as bigint)
     : false
@@ -408,7 +408,7 @@ export default function AddLiquidityV2() {
   const canAddLiquidity = tokenA && tokenB && amountA && amountB && 
     parseFloat(amountA) > 0 && parseFloat(amountB) > 0 && currentStep === 'idle'
 
-  // 🎯 执行添加流动性流程
+  // 🎯 执行Add liquidity流程
   const handleAddLiquidity = useCallback(async () => {
     if (!tokenA || !tokenB || !amountA || !amountB || !address) {
       console.error('❌ 缺少必要参数')
@@ -416,7 +416,7 @@ export default function AddLiquidityV2() {
     }
 
     try {
-      console.log('🚀 开始V2添加流动性流程:', {
+      console.log('🚀 开始V2Add liquidity流程:', {
         tokenA: tokenA.symbol,
         tokenB: tokenB.symbol,
         amountA,
@@ -496,7 +496,7 @@ export default function AddLiquidityV2() {
       
       const success = await executeAddLiquidity(liquidityParams)
       if (!success) {
-        console.error('❌ 添加流动性失败')
+        console.error('❌ Add liquidity失败')
         setCurrentStep('idle')
         return
       }
@@ -517,7 +517,7 @@ export default function AddLiquidityV2() {
             
             resolve()
           } else if (liquidityError) {
-            console.error('❌ 添加流动性出错:', liquidityError)
+            console.error('❌ Add liquidity出错:', liquidityError)
             reject(liquidityError)
           } else {
             setTimeout(checkLiquidity, 1000)
@@ -527,7 +527,7 @@ export default function AddLiquidityV2() {
       })
 
     } catch (error: any) {
-      console.error('❌ V2添加流动性流程失败:', error)
+      console.error('❌ V2Add liquidity流程失败:', error)
       setCurrentStep('idle')
     }
   }, [
@@ -714,7 +714,7 @@ export default function AddLiquidityV2() {
         {getButtonText()}
       </LiquiditySubmitButton>
 
-      {/* 代币选择模态框 */}
+      {/* Token selection模态框 */}
       <TokenSelectModal
         isOpen={showTokenAModal}
         onClose={() => setShowTokenAModal(false)}

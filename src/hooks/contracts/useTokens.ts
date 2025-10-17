@@ -5,7 +5,7 @@ import { getCurrentContracts } from '../../lib/wagmi';
 import { getTokenListForChain, Token } from '../../config/tokens';
 import ERC20ABI from '../../contracts/abis/ERC20.json';
 
-// 🔧 useTokens Hook - 多链支持
+// 🔧 useTokens Hook - Multi-chain support
 export function useTokens() {
   const { address: userAddress, isConnected } = useAccount();
   const chainId = useChainId();
@@ -13,27 +13,27 @@ export function useTokens() {
   const [tokens, setTokens] = useState<Token[]>([]);
   const [isLoading, setIsLoading] = useState(false);
 
-  // 🌟 动态加载当前网络的代币列表
+  // 🌟 Dynamically load token list for current network
   useEffect(() => {
     console.log('🔍 Token Debug - Chain ID:', chainId);
     const networkTokens = getTokenListForChain(chainId as any);
     console.log('🪙 Token List for Chain', chainId, ':', networkTokens.length, 'tokens');
     console.log('📋 Tokens:', networkTokens.map(t => ({ symbol: t.symbol, address: t.address })));
     setBaseTokens(networkTokens);
-    setTokens(networkTokens); // 立即设置tokens，这样组件就能看到代币列表
+    setTokens(networkTokens); // Immediately set tokens so components can see token list
   }, [chainId]);
 
-  // 🌟 获取原生代币余额 (动态链ID)
+  // 🌟 Get native token balance (dynamic chain ID)
   const { data: nativeBalance, isLoading: isLoadingNative } = useBalance({
     address: userAddress,
-    chainId: chainId, // 🎯 使用当前链ID
+    chainId: chainId, // 🎯 Use current chain ID
     query: {
       enabled: isConnected && !!userAddress,
       refetchInterval: 10000,
     }
   });
 
-  // 📊 批量读取ERC20代币余额 (排除原生代币)
+  // 📊 Batch read ERC20 token balances (excluding native token)
   const erc20Tokens = baseTokens.filter(token => token.address !== '0x0000000000000000000000000000000000000000');
   const { data: balancesData, isLoading: isLoadingBalances } = useReadContracts({
     contracts: erc20Tokens.map(token => ({
@@ -44,19 +44,19 @@ export function useTokens() {
     })),
     query: {
       enabled: isConnected && !!userAddress && erc20Tokens.length > 0,
-      refetchInterval: 10000, // 每10秒刷新一次余额
+      refetchInterval: 10000, // Refresh balance every 10 seconds
     }
   });
 
-  // 🔄 更新代币余额
+  // 🔄 Update token balances
   useEffect(() => {
-    // 只有当 baseTokens 不为空时才更新余额
+    // Only update balances when baseTokens is not empty
     if (baseTokens.length === 0) {
-      console.log('⏳ 等待代币列表加载...');
+      console.log('⏳ Waiting for token list to load...');
       return;
     }
 
-    // 🐛 调试信息
+    // 🐛 Debug information
     console.log('🔍 Balance Update Effect:', {
       userAddress,
       isConnected,
@@ -73,7 +73,7 @@ export function useTokens() {
     });
 
     const updatedTokens = baseTokens.map((token, tokenIndex) => {
-      // 🌟 处理原生OKB
+      // 🌟 Handle native OKB
       if (token.isNative || token.address === '0x0000000000000000000000000000000000000000') {
         if (nativeBalance) {
           console.log('✅ Native Balance Found:', nativeBalance.formatted, nativeBalance.symbol);
@@ -92,7 +92,7 @@ export function useTokens() {
         };
       }
       
-      // 📊 处理ERC20代币
+      // 📊 Handle ERC20 tokens
       const erc20Index = erc20Tokens.findIndex(t => t.address === token.address);
       if (erc20Index >= 0 && balancesData && balancesData[erc20Index]) {
         const balanceResult = balancesData[erc20Index];
@@ -116,23 +116,23 @@ export function useTokens() {
     setTokens(updatedTokens);
   }, [baseTokens, balancesData, isLoadingBalances, nativeBalance, isLoadingNative]);
 
-  // 🔍 根据符号查找代币
+  // 🔍 Find token by symbol
   const findTokenBySymbol = (symbol: string): Token | undefined => {
     return tokens.find(token => token.symbol.toLowerCase() === symbol.toLowerCase());
   };
 
-  // 🔍 根据地址查找代币
+  // 🔍 Find token by address
   const findTokenByAddress = (address: Address): Token | undefined => {
     return tokens.find(token => token.address.toLowerCase() === address.toLowerCase());
   };
 
-  // 💰 获取代币余额
+  // 💰 Get token balance
   const getTokenBalance = (tokenSymbol: string): string => {
     const token = findTokenBySymbol(tokenSymbol);
     return token?.balanceFormatted || '0';
   };
 
-  // ⚖️ 检查余额是否足够
+  // ⚖️ Check if balance is sufficient
   const hasEnoughBalance = (tokenSymbol: string, amount: string): boolean => {
     const token = findTokenBySymbol(tokenSymbol);
     if (!token || !amount) return false;
@@ -146,7 +146,7 @@ export function useTokens() {
     }
   };
 
-  // 🔄 刷新代币列表
+  // 🔄 Refresh token list
   const refreshTokens = async () => {
     setIsLoading(true);
     // 这里可以添加从链上或API获取最新代币列表的逻辑
@@ -164,7 +164,7 @@ export function useTokens() {
   };
 }
 
-// 🔧 useTokenAllowance Hook - 检查代币授权
+// 🔧 useTokenAllowance Hook - Check token allowance
 export function useTokenAllowance(tokenAddress: Address, spenderAddress: Address) {
   const { address: userAddress } = useAccount();
 
@@ -178,7 +178,7 @@ export function useTokenAllowance(tokenAddress: Address, spenderAddress: Address
     }
   });
 
-  // 🔍 检查是否需要授权
+  // 🔍 Check if approval is needed
   const needsApproval = (amount: string, decimals: number): boolean => {
     if (!allowance || !amount) return true;
     
@@ -199,7 +199,7 @@ export function useTokenAllowance(tokenAddress: Address, spenderAddress: Address
   };
 }
 
-// 🔧 useTokenInfo Hook - 获取单个代币信息
+// 🔧 useTokenInfo Hook - Get single token information
 export function useTokenInfo(tokenAddress: Address) {
   const { data: tokenInfo, isLoading } = useReadContracts({
     contracts: [

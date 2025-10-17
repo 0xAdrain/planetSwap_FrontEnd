@@ -164,7 +164,7 @@ const BSC: Chain = {
   ]
 }
 
-// 🌍 支持的链列表
+// 🌍 Supported chains list
 export const Chains: Chain[] = [
   LOCALHOST_TESTNET, // 💻 本地测试网
   XLAYER_TESTNET,    // 🔥 主要测试网

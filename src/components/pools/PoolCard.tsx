@@ -222,7 +222,7 @@ export default function PoolCard({ pool, onClick }: PoolCardProps) {
 
   const handleAddLiquidity = (e: React.MouseEvent) => {
     e.stopPropagation()
-    // TODO: 导航到添加流动性页面
+    // TODO: 导航到Add liquidity页面
     console.log('Add liquidity to pool:', pool.id)
   }
 

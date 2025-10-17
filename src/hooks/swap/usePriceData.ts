@@ -15,7 +15,7 @@ export interface PriceData {
 
 /**
  * 🥞 PancakeSwap风格的价格数据钩子
- * 参考PancakeSwap实现，获取Router的价格信息
+ * 参考PancakeSwap实现，获取Router的Price information
  */
 export function usePriceData(
   inputToken: Token | null,

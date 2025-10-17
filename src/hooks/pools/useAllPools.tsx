@@ -274,7 +274,7 @@ export const useAllPools = (): AllPoolsData => {
     }
     
     if (tokens.length === 0) {
-      console.log('⏳ 等待代币列表加载...')
+      console.log('⏳ Waiting for token list to load...')
       return
     }
 

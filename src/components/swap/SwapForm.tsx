@@ -283,13 +283,13 @@ const ConnectWalletButton = styled(SwapSubmitButton)`
 `
 
 /**
- * 🥞 完整的PancakeSwap风格Swap表单 - 集成真实交易逻辑
+ * 🥞 Complete PancakeSwap-style Swap Form - Integrated with Real Trading Logic
  */
 export default function SwapForm() {
   const { address, isConnected } = useAccount()
   const { tokens } = useTokens()
   
-  // 🎯 交易状态
+  // 🎯 Trading state
   const [inputToken, setInputToken] = useState<Token | null>(null)
   const [outputToken, setOutputToken] = useState<Token | null>(null)
   const [inputAmount, setInputAmount] = useState('')
@@ -318,7 +318,7 @@ export default function SwapForm() {
     approvalError
   } = useSwapCallback()
   
-  // 🎯 交易状态管理
+  // 🎯 Trading state管理
   const [currentStep, setCurrentStep] = useState<'idle' | 'approving' | 'swapping'>('idle')
 
   // 🎯 获取输入代币余额
@@ -335,7 +335,7 @@ export default function SwapForm() {
     enabled: !!outputToken && isConnected
   })
 
-  // 🎯 检查代币授权 - 参照PancakeSwap逻辑
+  // 🎯 Check token allowance - 参照PancakeSwap逻辑
   const contracts = getContractAddresses(ChainId.X_LAYER_TESTNET)
   const routerAddress = contracts.PLANET_ROUTER
   console.log('🔧 SwapForm使用配置文件的Router地址:', {
@@ -400,7 +400,7 @@ export default function SwapForm() {
     setInputAmount('')
   }, [inputToken, outputToken])
 
-  // 🎯 代币选择处理
+  // 🎯 Token selection处理
   const handleInputTokenSelect = useCallback((token: Token) => {
     if (token.address === outputToken?.address) {
       setOutputToken(inputToken)
@@ -427,7 +427,7 @@ export default function SwapForm() {
     }
   }, [inputBalance, inputToken])
 
-  // 🎯 交易确认处理
+  // 🎯 Trade confirmation处理
   const handleSwapClick = useCallback(() => {
     console.log('🎯 点击Swap按钮，当前状态:', {
       isSwapSuccess,
@@ -449,12 +449,12 @@ export default function SwapForm() {
       handleConfirmSwap()
     } else {
       // 显示确认模态框
-      console.log('📱 显示交易确认窗口')
+      console.log('📱 显示Trade confirmation窗口')
       setShowConfirm(true)
     }
   }, [expertMode, isSwapSuccess, showConfirm, currentStep])
 
-  // 🎯 执行交易 - 使用现代async/await模式，比PancakeSwap更优雅
+  // 🎯 Execute trade - 使用现代async/await模式，比PancakeSwap更优雅
   const handleConfirmSwap = useCallback(async () => {
     if (!inputToken || !outputToken || !inputAmount || !address) {
       console.error('❌ 缺少必要参数')
@@ -478,7 +478,7 @@ export default function SwapForm() {
         await executeApproval(inputToken, routerAddress as `0x${string}`, inputAmount)
         
         // 🔄 等待授权确认完成
-        console.log('⏳ 等待授权交易确认...')
+        console.log('⏳ 等待授权Trade confirmation...')
         
         // 使用Promise等待授权完成
         await new Promise<void>((resolve, reject) => {
@@ -520,13 +520,13 @@ export default function SwapForm() {
         slippage
       })
 
-      // 🔄 等待交易确认
-      console.log('⏳ 等待Swap交易确认...')
+      // 🔄 等待Trade confirmation
+      console.log('⏳ 等待SwapTrade confirmation...')
       
       await new Promise<void>((resolve, reject) => {
         const checkSwap = () => {
           if (isSwapSuccess) {
-            console.log('🎉 Swap交易确认完成!')
+            console.log('🎉 SwapTrade confirmation完成!')
             resolve()
           } else if (swapError) {
             console.error('❌ Swap失败:', swapError)
@@ -555,7 +555,7 @@ export default function SwapForm() {
       console.error('❌ 现代化Swap流程失败:', error)
       setCurrentStep('idle')
       
-      // 更好的错误处理
+      // 更好的Error handling
       if (error.message?.includes('User rejected')) {
         console.log('👤 用户取消了交易')
       } else {
@@ -610,7 +610,7 @@ export default function SwapForm() {
       }
       
       const autoCloseTimer = setTimeout(() => {
-        console.log('🔄 自动关闭交易确认窗口')
+        console.log('🔄 自动关闭Trade confirmation窗口')
         setShowConfirm(false)
         setCurrentStep('idle')
         if (isSwapSuccess) {
@@ -651,7 +651,7 @@ export default function SwapForm() {
   
   // 🔧 重置功能 - 立即解决卡住问题
   const resetSwapState = () => {
-    console.log('🔄 手动重置所有交易状态')
+    console.log('🔄 手动重置所有Trading state')
     setCurrentStep('idle')
     setShowConfirm(false)
     setShowSettings(false)
@@ -756,7 +756,7 @@ export default function SwapForm() {
         {/* TODO: 添加真实USD价值显示 */}
       </TokenInputContainer>
 
-      {/* 价格信息 */}
+      {/* Price information */}
       {inputToken && outputToken && inputAmount && (
         <PriceInfo>
           <PriceRow>
@@ -802,7 +802,7 @@ export default function SwapForm() {
         </SwapSubmitButton>
       )}
 
-      {/* 代币选择模态框 - 修复props传递 */}
+      {/* Token selection模态框 - 修复props传递 */}
       <TokenSelectModal
         isOpen={showInputModal}
         tokens={tokens}
@@ -833,7 +833,7 @@ export default function SwapForm() {
         onExpertModeChange={setExpertMode}
       />
 
-      {/* 确认模态框 - 真实交易状态 */}
+      {/* 确认模态框 - 真实Trading state */}
       {showConfirm && inputToken && outputToken && (
         <SwapConfirmModal
           isOpen={showConfirm}
