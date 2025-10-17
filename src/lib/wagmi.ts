@@ -89,7 +89,7 @@ export const wagmiConfig = createConfig(
       } : {})
     },
 
-    // Required API Keys
+    // WalletConnect Project ID (可选，为空则禁用二维码扫描功能)
     walletConnectProjectId: process.env.NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID || '',
 
     // 🌟 PlanetSwap App Info
