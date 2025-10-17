@@ -42,7 +42,10 @@ export const ChainSwitcher: React.FC<ChainSwitcherProps> = ({ className = '' }) 
       {/* 当前链显示 */}
       <div className="current-chain">
         <div 
-          className={`chain-indicator ${\n            isCurrentChainSupported ? 'supported' : 'unsupported'\n          }`}\n        >
+          className={`chain-indicator ${
+            isCurrentChainSupported ? 'supported' : 'unsupported'
+          }`}
+        >
           <div className="chain-info">
             <span className="chain-name">
               {currentChain?.fullName || `Chain ${currentChainId}`}
@@ -70,7 +73,9 @@ export const ChainSwitcher: React.FC<ChainSwitcherProps> = ({ className = '' }) 
                 key={chain.id}
                 onClick={() => handleSwitchChain(chain.id as ChainId)}
                 disabled={isPending}
-                className={`chain-option ${\n                  currentChainId === chain.id ? 'active' : ''\n                }`}
+                className={`chain-option ${
+                  currentChainId === chain.id ? 'active' : ''
+                }`}
               >
                 <div className="chain-option-info">
                   <span className="chain-name">{chain.name}</span>

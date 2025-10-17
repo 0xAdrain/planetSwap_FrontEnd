@@ -2,7 +2,7 @@ import React from 'react'
 import styled from '@emotion/styled'
 import { useAllPools } from '../../hooks/pools/useAllPools'
 import PoolCard from './PoolCard'
-import ContractDebug from '../debug/ContractDebug'
+import ContractDebug from '../Debug/ContractDebug'
 
 const Container = styled.div`
   padding: 20px;

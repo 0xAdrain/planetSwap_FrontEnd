@@ -2,7 +2,7 @@ import React, { useState, useMemo } from 'react';
 import styled from '@emotion/styled';
 import { motion, AnimatePresence } from 'framer-motion';
 import { XMarkIcon, MagnifyingGlassIcon } from '@heroicons/react/24/outline';
-import { Token } from '../../hooks/contracts/useTokens';
+import { Token } from '../../config/tokens';
 import AddTokenButton from './AddTokenButton';
 
 interface TokenSelectModalProps {
