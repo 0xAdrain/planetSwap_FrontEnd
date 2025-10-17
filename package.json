@@ -1,0 +1,42 @@
+{
+  "name": "starpump-dex",
+  "version": "1.0.0",
+  "private": true,
+  "license": "MIT",
+  "author": "StarPump Team",
+  "description": "StarPump - Revolutionary Planetary Pump DEX",
+  "scripts": {
+    "dev": "next dev -p 3001",
+    "build": "next build",
+    "start": "next start -p 3001",
+    "lint": "next lint",
+    "type-check": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@emotion/babel-plugin": "^11.11.0",
+    "@emotion/react": "^11.11.1",
+    "@emotion/styled": "^11.11.0",
+    "@heroicons/react": "^2.0.18",
+    "@tanstack/react-query": "^5.89.0",
+    "@wagmi/chains": "^1.7.0",
+    "clsx": "^2.0.0",
+    "connectkit": "^1.9.1",
+    "framer-motion": "^10.16.4",
+    "next": "^14.0.3",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-hot-toast": "^2.4.1",
+    "recharts": "^3.2.1",
+    "use-debounce": "^10.0.6",
+    "viem": "^2.0.0",
+    "wagmi": "^2.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.9.0",
+    "@types/react": "^18.2.37",
+    "@types/react-dom": "^18.2.15",
+    "eslint": "^8.54.0",
+    "eslint-config-next": "^14.0.3",
+    "typescript": "^5.2.2"
+  }
+}
