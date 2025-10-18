@@ -13,8 +13,10 @@ import {
 import AddLiquidityV2 from './AddLiquidityV2'
 import AddLiquidityV3 from './AddLiquidityV3'
 import RemoveLiquidityV2 from './RemoveLiquidityV2'
+import RemoveLiquidityV3 from './RemoveLiquidityV3'
 import ImportPoolV2 from './ImportPoolV2'
-import { useUserLiquidity } from '../../hooks/liquidity/useUserLiquidity'
+import FindPoolV3 from './FindPoolV3'
+import { useUserLiquiditySubgraph } from '../../hooks/liquidity/useUserLiquiditySubgraph'
 
 const LiquidityContainer = styled.div`
   max-width: 500px;
@@ -353,7 +355,7 @@ export default function LiquidityInterface() {
   const [removePercentage, setRemovePercentage] = useState(25)
   const [searchQuery, setSearchQuery] = useState('')
   
-  // 🎯 获取真实用户流动性数据
+  // 🎯 获取真实用户流动性数据 (基于Subgraph)
   const {
     userPositions,
     v2Positions,
@@ -364,14 +366,16 @@ export default function LiquidityInterface() {
     totalPositions,
     hasV2Positions,
     hasV3Positions
-  } = useUserLiquidity()
+  } = useUserLiquiditySubgraph()
 
-  console.log('🏊‍♂️ 用户流动性数据:', {
+  console.log('🏊‍♂️ 用户流动性数据 (Subgraph):', {
+    userAddress: address,
     totalPositions,
     v2Count: v2Positions.length,
     v3Count: v3Positions.length,
     isLoading: isPositionsLoading,
-    error: positionsError
+    error: positionsError,
+    dataSource: 'Subgraph'
   })
 
   return (
@@ -451,7 +455,7 @@ export default function LiquidityInterface() {
                 </EmptyStateIcon>
                 <EmptyStateText>Loading your liquidity...</EmptyStateText>
                 <EmptyStateSubtext>
-                  Fetching real data from blockchain
+                  Fetching real data from Subgraph (owner wallet: {address?.slice(0,6)}...{address?.slice(-4)})
                 </EmptyStateSubtext>
               </EmptyState>
             ) : positionsError ? (
@@ -479,7 +483,7 @@ export default function LiquidityInterface() {
                           <PoolPairName>{position.tokenA.symbol}/{position.tokenB.symbol}</PoolPairName>
                         </div>
                       </PoolPair>
-                      <PoolBadge>{position.isV3 ? 'V3' : 'V2'}</PoolBadge>
+                      <PoolBadge>{position.isV3 ? 'V3' : 'V2'} • Real</PoolBadge>
                     </PoolHeader>
                     
                     <PoolStats>
@@ -530,16 +534,26 @@ export default function LiquidityInterface() {
         )
       )}
 
-      {/* Import Pool - 完整的V2导入功能 */}
+      {/* Find Pool - V2/V3版本切换 */}
       {activeTab === 'find' && (
-        <ImportPoolV2 />
+        version === 'v2' ? (
+          <ImportPoolV2 />
+        ) : (
+          <FindPoolV3 />
+        )
       )}
 
-      {/* Remove Liquidity - 完整的V2移除功能 */}
+      {/* Remove Liquidity - V2/V3版本切换 */}
       {activeTab === 'remove' && (
-        <RemoveLiquidityV2 
-          onBack={() => setActiveTab('liquidity')}
-        />
+        version === 'v2' ? (
+          <RemoveLiquidityV2 
+            onBack={() => setActiveTab('liquidity')}
+          />
+        ) : (
+          <RemoveLiquidityV3 
+            onBack={() => setActiveTab('liquidity')}
+          />
+        )
       )}
     </LiquidityContainer>
   )

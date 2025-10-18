@@ -6,7 +6,7 @@ import { ConnectKitButton } from 'connectkit';
 import Layout from '@/components/Layout';
 import SwapInterface from '../components/swap/SwapInterface';
 import LiquidityInterface from '../components/liquidity/LiquidityInterface';
-import PoolsListPageWithCard from '../components/pools/PoolsListPageWithCard';
+import PoolsListPageSubgraph from '../components/pools/PoolsListPageSubgraph';
 import FarmInterface from '@/components/farm/FarmInterface';
 import StakeInterface from '@/components/stake/StakeInterface';
 import StatsInterface from '@/components/stats/StatsInterface';
@@ -145,7 +145,7 @@ export default function HomePage() {
       case 'liquidity':
         return <LiquidityInterface />;
       case 'pools':
-        return <PoolsListPageWithCard />;
+        return <PoolsListPageSubgraph />;
       case 'farm':
         return <FarmInterface />;
       case 'stake':

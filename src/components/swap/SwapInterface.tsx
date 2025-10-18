@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import styled from '@emotion/styled'
 import { motion } from 'framer-motion'
-import SwapForm from './SwapForm'
+import SwapFormEnhanced from './SwapFormEnhanced'
 
 const SwapContainer = styled.div`
   max-width: 500px;
@@ -29,11 +29,26 @@ const Tab = styled.button<{ active: boolean }>`
   font-weight: 600;
   cursor: pointer;
   transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
 
   &:hover {
     background: rgba(34, 197, 94, 0.1);
     color: #22c55e;
   }
+`
+
+const SmartBadge = styled.span`
+  background: linear-gradient(135deg, #4ade80 0%, #22c55e 100%);
+  color: white;
+  font-size: 9px;
+  font-weight: 700;
+  padding: 2px 4px;
+  border-radius: 3px;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
 `
 
 const PlaceholderCard = styled(motion.div)`
@@ -48,21 +63,22 @@ const PlaceholderCard = styled(motion.div)`
 type SwapTab = 'swap' | 'limit'
 
 /**
- * 🥞 简化的PancakeSwap风格交易界面
- * 专注于核心swap功能
+ * 🧠 PancakeSwap风格智能交易界面
+ * 自动智能路由，用户无需手动选择
  */
 export default function SwapInterface() {
   const [activeTab, setActiveTab] = useState<SwapTab>('swap')
 
   return (
     <SwapContainer>
-      {/* 交易类型选项卡 - 严格按照PancakeSwap */}
+      {/* 交易类型选项卡 - 简化版 */}
       <TabContainer>
         <Tab 
           active={activeTab === 'swap'} 
           onClick={() => setActiveTab('swap')}
         >
           Swap
+          <SmartBadge>Smart</SmartBadge>
         </Tab>
         <Tab 
           active={activeTab === 'limit'} 
@@ -72,8 +88,8 @@ export default function SwapInterface() {
         </Tab>
       </TabContainer>
 
-      {/* 交易表单 - 严格按照PancakeSwap功能 */}
-      {activeTab === 'swap' && <SwapForm />}
+      {/* 智能交易表单 - 自动选择最优路径 */}
+      {activeTab === 'swap' && <SwapFormEnhanced />}
       
       {activeTab === 'limit' && (
         <PlaceholderCard
@@ -85,7 +101,7 @@ export default function SwapInterface() {
             Set limit orders to trade automatically when your target price is reached.
           </p>
           <p style={{ color: 'rgba(255, 255, 255, 0.4)', fontSize: '12px', marginTop: '16px' }}>
-            🚧 Coming soon - PancakeSwap limit order functionality
+            🚧 Coming soon - Advanced limit order functionality with Smart Router integration
           </p>
         </PlaceholderCard>
       )}

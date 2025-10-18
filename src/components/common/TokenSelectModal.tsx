@@ -279,17 +279,17 @@ export const TokenSelectModal: React.FC<TokenSelectModalProps> = ({
 
   // 🎯 常用代币（前4个非原生代币）
   const commonTokens = useMemo(() => {
-    return tokens
+    return (tokens || [])
       .filter(token => !token.isNative)
       .slice(0, 4);
   }, [tokens]);
 
   // 🔍 过滤代币
   const filteredTokens = useMemo(() => {
-    if (!searchTerm.trim()) return tokens;
+    if (!searchTerm.trim()) return tokens || [];
     
     const search = searchTerm.toLowerCase();
-    return tokens.filter(token => 
+    return (tokens || []).filter(token => 
       token.symbol.toLowerCase().includes(search) ||
       token.name.toLowerCase().includes(search) ||
       token.address.toLowerCase().includes(search)
@@ -390,7 +390,7 @@ export const TokenSelectModal: React.FC<TokenSelectModalProps> = ({
                     </TokenRightSection>
                   </TokenItem>
                 ))
-              ) : tokens.length === 0 ? (
+              ) : (tokens || []).length === 0 ? (
                 <NoResults>
                   <NoResultsEmoji>🪙</NoResultsEmoji>
                   <div>No tokens available</div>
