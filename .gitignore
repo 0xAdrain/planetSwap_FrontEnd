@@ -124,7 +124,6 @@ temp/
 **/public/sw.js.map
 **/public/workbox-*.js.map
 **/public/worker-*.js.map
-
 # Local development
 .local
 .cache
@@ -138,3 +137,45 @@ chromatic-build/
 # Misc
 *.orig
 .history/
+
+*.pid.lock
+
+# Coverage reports
+coverage/
+*.lcov
+.nyc_output
+
+# Dependency directories
+jspm_packages/
+
+# Optional npm cache directory
+.npm
+.npmrc
+
+# Optional yarn cache
+.yarn/cache
+.yarn/unplugged
+.yarn/build-state.yml
+.yarn/install-state.gz
+.pnp.*
+
+# Yarn Integrity file
+.yarn-integrity
+
+# Node.js REPL history
+.node_repl_history
+
+# Output of 'npm pack'
+*.tgz
+
+# Temporary folders
+tmp/
+temp/
+
+# PWA files
+**/public/sw.js
+**/public/workbox-*.js
+**/public/worker-*.js
+**/public/sw.js.map
+**/public/workbox-*.js.map
+**/public/worker-*.js.map

@@ -165,7 +165,7 @@ function GlobalStats() {
 
         <FullWidthStat>
           <StatValue>{globalData.plantPrice}</StatValue>
-          <StatLabel>PLANET 代币价格</StatLabel>
+          <StatLabel>COMET 代币价格</StatLabel>
           <StatChange positive={changes.price.positive}>
             {changes.price.positive ? '📈' : '📉'} {changes.price.value}
           </StatChange>

@@ -64,25 +64,25 @@ export default function FarmStats() {
 
   return (
     <StatsCard>
-      <CardTitle>🌱 PLANET Farm 统计</CardTitle>
+      <CardTitle>🌱 COMET Farm 统计</CardTitle>
       
       <APYBadge>
         🔥 当前 APY: {farmStats.currentAPY}%
       </APYBadge>
 
       <StatRow>
-        <StatLabel>PLANET 总供应量</StatLabel>
+        <StatLabel>COMET 总供应量</StatLabel>
         <StatValue>{farmStats.totalPlantSupply.toLocaleString()}</StatValue>
       </StatRow>
 
       <StatRow>
-        <StatLabel>您的 PLANET 余额</StatLabel>
+        <StatLabel>您的 COMET 余额</StatLabel>
         <StatValue>{farmStats.yourPlantBalance.toLocaleString()}</StatValue>
       </StatRow>
 
       <StatRow>
         <StatLabel>每日奖励</StatLabel>
-        <StatValue>{farmStats.dailyRewards} PLANET</StatValue>
+        <StatValue>{farmStats.dailyRewards} COMET</StatValue>
       </StatRow>
 
       <StatRow>

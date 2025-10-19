@@ -92,8 +92,8 @@ export default function StakingInterface() {
   const features = [
     {
       icon: '⭐',
-      title: 'PLANET 质押',
-      description: '质押 PLANET 代币获得稳定收益和协议治理权'
+      title: 'COMET 质押',
+      description: '质押 COMET 代币获得稳定收益和协议治理权'
     },
     {
       icon: '🗳️',
@@ -108,7 +108,7 @@ export default function StakingInterface() {
     {
       icon: '💎',
       title: '奖励分配',
-      description: '获得协议收入分成和额外的 PLANET 代币奖励'
+      description: '获得协议收入分成和额外的 COMET 代币奖励'
     }
   ];
 
@@ -120,10 +120,10 @@ export default function StakingInterface() {
         transition={{ duration: 0.8 }}
       >
         <Icon>⭐</Icon>
-        <Title>PLANET 质押</Title>
+        <Title>COMET 质押</Title>
         <Subtitle>
-          PLANET 代币质押系统即将上线！
-          质押 PLANET 代币获得额外收益，参与 StarPump 协议治理。
+          COMET 代币质押系统即将上线！
+          质押 COMET 代币获得额外收益，参与 StarPump 协议治理。
         </Subtitle>
 
         <FeatureGrid>

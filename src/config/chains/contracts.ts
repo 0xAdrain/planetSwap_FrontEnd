@@ -1,4 +1,4 @@
-// 🌍 PlanetSwap 合约地址配置
+// 🌍 CometSwap 合约地址配置
 // 多链合约地址管理，支持环境变量覆盖
 
 import { ChainId } from './chainId'
@@ -49,6 +49,11 @@ const XLAYER_TESTNET_CONTRACTS: ContractAddresses = {
   
   // 🧠 SmartRouter - 支持V2/V3混合路由
   PLANET_SMART_ROUTER: process.env.NEXT_PUBLIC_SMART_ROUTER_XLAYER || '0xDD7776497095CE5B9d6aF2487dB2194555B2E801',
+  
+  // 🎯 V3 核心合约 (已部署!)
+  PLANET_V3_FACTORY: process.env.NEXT_PUBLIC_V3_FACTORY_XLAYER || '0x7e4Fe502ee78ab7728B00B3bD7fD182a4B17C45F',
+  PLANET_V3_ROUTER: process.env.NEXT_PUBLIC_V3_ROUTER_XLAYER || '0xDD7776497095CE5B9d6aF2487dB2194555B2E801', // Smart Router包含V3功能
+  NONFUNGIBLE_POSITION_MANAGER: process.env.NEXT_PUBLIC_NFT_MANAGER_XLAYER || '0xF9df8Fce74325c5A546d45f0C646E02830582d31', // Pool Deployer作为NFT Manager
   
   // 🚜 Farm 合约
   MASTER_CHEF: process.env.NEXT_PUBLIC_MASTER_CHEF_XLAYER || '0x0000000000000000000000000000000000000000',

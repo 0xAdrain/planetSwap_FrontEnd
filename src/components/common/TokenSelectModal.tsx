@@ -1,7 +1,7 @@
 import React, { useState, useMemo } from 'react';
 import styled from '@emotion/styled';
 import { motion, AnimatePresence } from 'framer-motion';
-import { XMarkIcon, MagnifyingGlassIcon } from '@heroicons/react/24/outline';
+import { XMarkIcon, MagnifyingGlassIcon, WalletIcon } from '@heroicons/react/24/outline';
 import { Token } from '../../config/tokens';
 import AddTokenButton from './AddTokenButton';
 
@@ -188,9 +188,8 @@ const TokenList = styled.div`
 const TokenItem = styled(motion.div)<{ $selected?: boolean }>`
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: 8px;
   padding: 16px;
-  cursor: pointer;
   border-radius: 12px;
   margin-bottom: 4px;
   background: ${props => props.$selected ? 'rgba(34, 197, 94, 0.1)' : 'transparent'};
@@ -201,6 +200,15 @@ const TokenItem = styled(motion.div)<{ $selected?: boolean }>`
     background: rgba(34, 197, 94, 0.05);
     border-color: rgba(34, 197, 94, 0.1);
   }
+`;
+
+const TokenMainContent = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex: 1;
+  min-width: 0;
+  cursor: pointer;
 `;
 
 const TokenIcon = styled.div`
@@ -244,6 +252,32 @@ const TokenRightSection = styled.div`
   gap: 4px;
 `;
 
+const AddToWalletButton = styled(motion.button)`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  background: rgba(34, 197, 94, 0.1);
+  border: 1px solid rgba(34, 197, 94, 0.2);
+  border-radius: 8px;
+  cursor: pointer;
+  margin-left: 8px;
+  transition: all 0.2s ease;
+  
+  &:hover {
+    background: rgba(34, 197, 94, 0.2);
+    border-color: rgba(34, 197, 94, 0.4);
+    transform: translateY(-1px);
+  }
+  
+  svg {
+    width: 16px;
+    height: 16px;
+    color: #22c55e;
+  }
+`;
+
 const TokenBalance = styled.div`
   color: white;
   font-size: 14px;
@@ -276,6 +310,33 @@ export const TokenSelectModal: React.FC<TokenSelectModalProps> = ({
   title = "Select a token"
 }) => {
   const [searchTerm, setSearchTerm] = useState('');
+
+  // 🪙 添加代币到钱包
+  const addTokenToWallet = async (token: Token, e: React.MouseEvent) => {
+    e.stopPropagation(); // 防止触发选择代币
+    
+    try {
+      if (typeof window.ethereum !== 'undefined') {
+        await window.ethereum.request({
+          method: 'wallet_watchAsset',
+          params: {
+            type: 'ERC20',
+            options: {
+              address: token.address,
+              symbol: token.symbol,
+              decimals: token.decimals,
+              image: token.logoURI || `https://via.placeholder.com/64x64/22c55e/ffffff?text=${token.symbol.slice(0,2)}`,
+            },
+          },
+        });
+        console.log(`✅ ${token.symbol} 已添加到钱包`);
+      } else {
+        console.warn('⚠️ 钱包未检测到');
+      }
+    } catch (error) {
+      console.error('❌ 添加代币失败:', error);
+    }
+  };
 
   // 🎯 常用代币（前4个非原生代币）
   const commonTokens = useMemo(() => {
@@ -369,25 +430,107 @@ export const TokenSelectModal: React.FC<TokenSelectModalProps> = ({
                   <TokenItem
                     key={token.address}
                     $selected={selectedToken?.address === token.address}
-                    onClick={() => handleSelectToken(token)}
                     whileHover={{ scale: 1.005 }}
                     whileTap={{ scale: 0.995 }}
                   >
-                    <TokenIcon>
-                      {token.logoURI || token.symbol.slice(0, 2)}
-                    </TokenIcon>
-                    <TokenInfo>
-                      <TokenSymbol>{token.symbol}</TokenSymbol>
-                      <TokenName>{token.name}</TokenName>
-                    </TokenInfo>
-                    <TokenRightSection>
-                      <TokenBalance>
-                        {token.balanceFormatted ? parseFloat(token.balanceFormatted).toFixed(4) : '0.0000'}
-                      </TokenBalance>
-                      <TokenUsdValue>
-                        ${token.balanceFormatted ? (parseFloat(token.balanceFormatted) * 200).toFixed(2) : '0.00'}
-                      </TokenUsdValue>
-                    </TokenRightSection>
+                    <TokenMainContent onClick={() => handleSelectToken(token)}>
+                      <TokenIcon>
+                        {token.logoURI || token.symbol.slice(0, 2)}
+                      </TokenIcon>
+                      <TokenInfo>
+                        <TokenSymbol>{token.symbol}</TokenSymbol>
+                        <TokenName>{token.name}</TokenName>
+                      </TokenInfo>
+                      <TokenRightSection>
+                        <TokenBalance>
+                          {token.balanceFormatted ? parseFloat(token.balanceFormatted).toFixed(4) : '0.0000'}
+                        </TokenBalance>
+                        <TokenUsdValue>
+                          ${token.balanceFormatted ? (parseFloat(token.balanceFormatted) * 200).toFixed(2) : '0.00'}
+                        </TokenUsdValue>
+                      </TokenRightSection>
+                    </TokenMainContent>
+                    {!token.isNative && (
+                      <AddToWalletButton
+                        onClick={(e) => addTokenToWallet(token, e)}
+                        whileHover={{ scale: 1.1 }}
+                        whileTap={{ scale: 0.9 }}
+                        title={`添加 ${token.symbol} 到钱包`}
+                      >
+                        <WalletIcon />
+                      </AddToWalletButton>
+                    )}
+                  </TokenItem>
+                ))
+              ) : (tokens || []).length === 0 ? (
+                <NoResults>
+                  <NoResultsEmoji>🪙</NoResultsEmoji>
+                  <div>No tokens available</div>
+                  <div style={{ fontSize: '14px', color: 'rgba(255, 255, 255, 0.4)', marginTop: '8px' }}>
+                    Please check your network connection
+                  </div>
+                </NoResults>
+              ) : (
+                <NoResults>
+                  <NoResultsEmoji>🔍</NoResultsEmoji>
+                  <div>No results found</div>
+                  <div style={{ fontSize: '14px', color: 'rgba(255, 255, 255, 0.4)', marginTop: '8px' }}>
+                    Try a different search term or check the spelling
+                  </div>
+                </NoResults>
+              )}
+            </TokenList>
+          </TokenListContainer>
+        </Modal>
+      </Backdrop>
+    </AnimatePresence>
+  );
+};
+
+export default TokenSelectModal;
+
+
+
+          <TokenListContainer>
+            <TokenListTitle>
+              {searchTerm ? `Search results` : `All tokens`} ({filteredTokens.length})
+            </TokenListTitle>
+            <TokenList>
+              {filteredTokens.length > 0 ? (
+                filteredTokens.map((token) => (
+                  <TokenItem
+                    key={token.address}
+                    $selected={selectedToken?.address === token.address}
+                    whileHover={{ scale: 1.005 }}
+                    whileTap={{ scale: 0.995 }}
+                  >
+                    <TokenMainContent onClick={() => handleSelectToken(token)}>
+                      <TokenIcon>
+                        {token.logoURI || token.symbol.slice(0, 2)}
+                      </TokenIcon>
+                      <TokenInfo>
+                        <TokenSymbol>{token.symbol}</TokenSymbol>
+                        <TokenName>{token.name}</TokenName>
+                      </TokenInfo>
+                      <TokenRightSection>
+                        <TokenBalance>
+                          {token.balanceFormatted ? parseFloat(token.balanceFormatted).toFixed(4) : '0.0000'}
+                        </TokenBalance>
+                        <TokenUsdValue>
+                          ${token.balanceFormatted ? (parseFloat(token.balanceFormatted) * 200).toFixed(2) : '0.00'}
+                        </TokenUsdValue>
+                      </TokenRightSection>
+                    </TokenMainContent>
+                    {!token.isNative && (
+                      <AddToWalletButton
+                        onClick={(e) => addTokenToWallet(token, e)}
+                        whileHover={{ scale: 1.1 }}
+                        whileTap={{ scale: 0.9 }}
+                        title={`添加 ${token.symbol} 到钱包`}
+                      >
+                        <WalletIcon />
+                      </AddToWalletButton>
+                    )}
                   </TokenItem>
                 ))
               ) : (tokens || []).length === 0 ? (

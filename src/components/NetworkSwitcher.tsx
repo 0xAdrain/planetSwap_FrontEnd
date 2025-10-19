@@ -105,7 +105,7 @@ export const NetworkSwitcher: React.FC<NetworkSwitcherProps> = ({
       >
         <WarningTitle>⚠️ 网络不匹配</WarningTitle>
         <WarningText>
-          请切换到 <strong>X Layer Testnet</strong> 网络来使用 PlanetSwap。
+          请切换到 <strong>X Layer Testnet</strong> 网络来使用 CometSwap。
           <br />
           Chain ID: {requiredChainId}
         </WarningText>

@@ -167,7 +167,7 @@ export default function HomePage() {
 
   return (
       <Layout
-        title="PlanetSwap - Revolutionary Decentralized Exchange"
+        title="CometSwap - Revolutionary Decentralized Exchange"
         description="Experience advanced liquidity aggregation, intelligent routing, and sustainable yield farming on blockchain"
       >
       <Container>
@@ -178,7 +178,7 @@ export default function HomePage() {
             <Header>
               <LeftSection>
                 <TitleWrapper>
-                  <Title>PlanetSwap</Title>
+                  <Title>CometSwap</Title>
                   <Version>v1.0.0</Version>
                 </TitleWrapper>
                 <Navigation activeTab={activeTab} onTabChange={setActiveTab} />

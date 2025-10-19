@@ -1,4 +1,4 @@
-// 🌍 PlanetSwap 多链配置 - 基于 PancakeSwap 架构
+// 🌍 CometSwap 多链配置 - 基于 PancakeSwap 架构
 // Fork from: pancake-frontend-develop/packages/chains/src/chainId.ts
 
 export enum ChainId {

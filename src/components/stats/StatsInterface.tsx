@@ -114,8 +114,8 @@ const generateTimeSeriesData = (days: number) => {
 };
 
 const pieData = [
-  { name: 'PLANET/OKB', value: 35, color: '#32CD32' },
-  { name: 'PLANET/USDT', value: 25, color: '#228B22' },
+  { name: 'COMET/OKB', value: 35, color: '#32CD32' },
+  { name: 'COMET/USDT', value: 25, color: '#228B22' },
   { name: 'OKB/USDT', value: 20, color: '#90EE90' },
   { name: 'Other', value: 20, color: '#006400' }
 ];

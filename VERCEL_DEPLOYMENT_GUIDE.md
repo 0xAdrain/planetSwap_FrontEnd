@@ -1,4 +1,4 @@
-# 🚀 PlanetSwap Vercel 部署指南
+# 🚀 CometSwap Vercel 部署指南
 
 ## 📋 部署前准备
 
@@ -22,7 +22,7 @@
 ```bash
 1. 打开 GitHub Desktop
 2. File -> Add Local Repository
-3. 选择 PlanetSwap-FrontEnd 文件夹
+3. 选择 CometSwap-FrontEnd 文件夹
 4. 点击 "create a repository"
 5. Repository name: planetswap-frontend
 6. 点击 "Create Repository"
@@ -31,10 +31,10 @@
 
 ### 方式2：命令行
 ```bash
-cd PlanetSwap-FrontEnd
+cd CometSwap-FrontEnd
 git init
 git add .
-git commit -m "Initial commit: PlanetSwap Frontend"
+git commit -m "Initial commit: CometSwap Frontend"
 git branch -M main
 
 # 在GitHub创建仓库后

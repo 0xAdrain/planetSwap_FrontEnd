@@ -1,4 +1,4 @@
-# 🥞 PlanetSwap vs PancakeSwap 全面功能对比分析
+# 🥞 CometSwap vs PancakeSwap 全面功能对比分析
 
 ## **🔍 深度对比发现重大缺失！**
 

@@ -218,7 +218,7 @@ export default function AboutInterface() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
       >
-        <Title>About PlanetSwap</Title>
+        <Title>About CometSwap</Title>
         <Subtitle>
           The Revolutionary Decentralized Exchange with Smart Pool Technology and Custom Tax Rules
         </Subtitle>
@@ -231,13 +231,13 @@ export default function AboutInterface() {
       >
         <SectionTitle>Our Mission（我们的使命）</SectionTitle>
         <SectionContent>
-          PlanetSwap 正在通过创新的智能池技术与可定制的税收机制相结合，避免通过 ERC 代币的高危代码定制带来的风险和项目方 Rug，构建去中心化金融的未来。
+          CometSwap 正在通过创新的智能池技术与可定制的税收机制相结合，避免通过 ERC 代币的高危代码定制带来的风险和项目方 Rug，构建去中心化金融的未来。
           我们赋能项目方发行具有内置可持续性功能并利好社区建设的代币池规则，同时为交易者提供透明、高效和安全的交易体验。
           
           <br/><br/>
           
           我们的目标是创建一个更加公平、透明的 DeFi 生态系统，让每个参与者都能从中受益。
-          除了支持传统的安全、多轮牛熊验证的 AMM Pool 之外，还通过革命性的智能池技术和灵活的税收分配机制，PlanetSwap 为区块链项目提供了全新的启动和运营方式。
+          除了支持传统的安全、多轮牛熊验证的 AMM Pool 之外，还通过革命性的智能池技术和灵活的税收分配机制，CometSwap 为区块链项目提供了全新的启动和运营方式。
         </SectionContent>
       </Section>
 

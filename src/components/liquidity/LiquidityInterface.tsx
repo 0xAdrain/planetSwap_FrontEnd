@@ -562,3 +562,16 @@ export default function LiquidityInterface() {
 
 
 
+        ) : (
+          <RemoveLiquidityV3 
+            onBack={() => setActiveTab('liquidity')}
+          />
+        )
+      )}
+    </LiquidityContainer>
+  )
+}
+
+
+
+

@@ -22,3 +22,30 @@
 *.eot binary
 *.ttf binary
 *.otf binary
+
+# Ensure JavaScript and TypeScript files use LF
+*.js text eol=lf
+*.jsx text eol=lf
+*.ts text eol=lf
+*.tsx text eol=lf
+*.json text eol=lf
+
+# Ensure shell scripts use LF
+*.sh text eol=lf
+
+# Binary files
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.woff binary
+*.woff2 binary
+*.eot binary
+*.ttf binary
+*.otf binary
+
+
+
+
+

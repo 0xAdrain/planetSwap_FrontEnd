@@ -242,7 +242,7 @@ function ProtocolStats() {
           </TreasuryStat>
           <TreasuryStat>
             <TreasuryValue>{protocolData.plantReserve.toLocaleString()}</TreasuryValue>
-            <TreasuryLabel>PLANET 储备</TreasuryLabel>
+            <TreasuryLabel>COMET 储备</TreasuryLabel>
           </TreasuryStat>
           <TreasuryStat>
             <TreasuryValue>{protocolData.developmentFund}</TreasuryValue>

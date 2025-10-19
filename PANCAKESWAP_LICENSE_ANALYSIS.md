@@ -151,7 +151,7 @@ cp pancake-frontend/apps/solana/LICENSE our-project/apps/solana/
 ### **第2步：修改和定制（1周内）**
 ```bash
 # 1. 更改品牌信息
-sed -i 's/PancakeSwap/PlanetSwap/g' **/*.tsx **/*.ts
+sed -i 's/PancakeSwap/CometSwap/g' **/*.tsx **/*.ts
 
 # 2. 更改颜色和主题
 # 修改主题配置文件

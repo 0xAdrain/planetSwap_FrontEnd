@@ -2,6 +2,7 @@ import { useState } from 'react'
 import styled from '@emotion/styled'
 import { motion } from 'framer-motion'
 import SwapFormEnhanced from './SwapFormEnhanced'
+import { SwapProvider } from '../../state/swap/reducer'
 
 const SwapContainer = styled.div`
   max-width: 500px;
@@ -89,9 +90,33 @@ export default function SwapInterface() {
       </TabContainer>
 
       {/* 智能交易表单 - 自动选择最优路径 */}
-      {activeTab === 'swap' && <SwapFormEnhanced />}
+      {activeTab === 'swap' && (
+        <SwapProvider>
+          <SwapFormEnhanced />
+        </SwapProvider>
+      )}
       
       {activeTab === 'limit' && (
+        <PlaceholderCard
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+        >
+          <h3>📊 Limit Orders</h3>
+          <p style={{ color: 'rgba(255, 255, 255, 0.6)', fontSize: '14px' }}>
+            Set limit orders to trade automatically when your target price is reached.
+          </p>
+          <p style={{ color: 'rgba(255, 255, 255, 0.4)', fontSize: '12px', marginTop: '16px' }}>
+            🚧 Coming soon - Advanced limit order functionality with Smart Router integration
+          </p>
+        </PlaceholderCard>
+      )}
+    </SwapContainer>
+  )
+}
+
+
+
+
         <PlaceholderCard
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}

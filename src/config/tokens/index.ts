@@ -1,4 +1,4 @@
-// 🪙 PlanetSwap Multi-chain Token Configuration
+// 🪙 CometSwap Multi-chain Token Configuration
 // Dynamically load token lists based on different networks
 
 import { Address } from 'viem';

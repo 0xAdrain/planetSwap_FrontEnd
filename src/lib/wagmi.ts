@@ -92,8 +92,8 @@ export const wagmiConfig = createConfig(
     // WalletConnect Project ID (可选，为空则禁用二维码扫描功能)
     walletConnectProjectId: process.env.NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID || '',
 
-    // 🌟 PlanetSwap App Info
-    appName: 'PlanetSwap V4',
+    // 🌟 CometSwap App Info
+    appName: 'CometSwap V4',
     appDescription: 'Revolutionary DEX with Bitcoin-style Halving Tokenomics',
     appUrl: 'https://planetswap.io',
     appIcon: '/favicon.ico',

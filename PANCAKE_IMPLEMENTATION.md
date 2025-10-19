@@ -64,7 +64,7 @@ const amounts = await publicClient.readContract({
 
 ### 启动前端
 ```bash
-cd PlanetSwap-FrontEnd
+cd CometSwap-FrontEnd
 npm run dev
 ```
 

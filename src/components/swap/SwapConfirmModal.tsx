@@ -276,6 +276,7 @@ interface SwapConfirmModalProps {
   isSwapSuccess?: boolean
   swapError?: any
   approvalError?: any
+  routePath?: string[] // 🔄 完整的多跳路径
 }
 
 export default function SwapConfirmModal({
@@ -294,12 +295,45 @@ export default function SwapConfirmModal({
   isApprovalSuccess = false,
   isSwapSuccess = false,
   swapError = null,
-  approvalError = null
+  approvalError = null,
+  routePath = []
 }: SwapConfirmModalProps) {
   const [showRoute, setShowRoute] = useState(false)
   
   const isHighPriceImpact = priceImpact > 3
   const isVeryHighPriceImpact = priceImpact > 15
+
+  // 🔄 渲染多跳路径
+  const renderRoute = () => {
+    if (!routePath || routePath.length === 0) {
+      return `${inputToken.symbol} → ${outputToken.symbol}` // 默认显示
+    }
+
+    // 如果只有2个token，说明是直接交易
+    if (routePath.length === 2) {
+      return `${inputToken.symbol} → ${outputToken.symbol}`
+    }
+
+    // 多跳路径：显示完整路径
+    const tokenSymbols = routePath.map((address, index) => {
+      if (index === 0) return inputToken.symbol
+      if (index === routePath.length - 1) return outputToken.symbol
+      
+      // 中间代币：根据地址映射symbol (支持大小写)
+      const lowerAddress = address.toLowerCase()
+      if (lowerAddress === '0xfcf165c4c8925682ae5facec596d474eb36ce825') return 'mWOKB'
+      if (lowerAddress === '0xe196aaadebacce2354aa414d202e0ab1c907d8b5') return 'mUSDT'
+      if (lowerAddress === '0x70b759ba2ca756fad20b232de07f583aa5e676fc') return 'mUSDC'
+      if (lowerAddress === '0x4ec24e2da05f7c6fc54c3234137e07d0a8826610') return 'mDAI'
+      if (lowerAddress === '0x3f806e22414060286632d5f5c67b6afbd4b1d7b9') return 'mWBTC'
+      if (lowerAddress === '0xb16637fa04a286c0ee2874935970cda0b595e16a') return 'mETH'
+      if (lowerAddress === '0x826db476956ee85d9b3807de4889945f9dd81740') return 'mMEME'
+      
+      return `${address.slice(0, 6)}...` // 未知代币显示地址缩写
+    })
+
+    return tokenSymbols.join(' → ')
+  }
 
   // 🚨 移除假数据 - USD价值应从真实价格oracle获取
   // TODO: 实现真实USD价值计算
@@ -503,10 +537,15 @@ export default function SwapConfirmModal({
                 </DetailLabel>
                 {showRoute ? (
                   <RouteContainer>
-                    {inputToken.symbol} → {outputToken.symbol}
+                    {renderRoute()}
                   </RouteContainer>
                 ) : (
-                  <DetailValue>Best route</DetailValue>
+                  <DetailValue>
+                    {routePath && routePath.length > 2 
+                      ? `${routePath.length - 1} hop${routePath.length > 3 ? 's' : ''}`
+                      : 'Direct'
+                    }
+                  </DetailValue>
                 )}
               </DetailRow>
             </DetailsSection>

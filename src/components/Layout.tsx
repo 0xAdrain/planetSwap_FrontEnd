@@ -9,8 +9,8 @@ interface LayoutProps {
 
 export default function Layout({ 
   children, 
-  title = 'PlanetSwap DEX',
-  description = 'Revolutionary Decentralized Exchange with Custom Tax Pools and PLANET Farming'
+  title = 'CometSwap DEX',
+  description = 'Revolutionary Decentralized Exchange with Custom Tax Pools and COMET Farming'
 }: LayoutProps) {
   return (
     <>

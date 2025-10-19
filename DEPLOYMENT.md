@@ -1,4 +1,4 @@
-# 🚀 **PlanetSwap V4 部署配置指南**
+# 🚀 **CometSwap V4 部署配置指南**
 
 **基于X Layer Testnet的多链架构**
 
@@ -9,7 +9,7 @@
 ### **创建 `.env.local` 文件**
 
 ```bash
-# 在 PlanetSwap-FrontEnd 目录下创建 .env.local
+# 在 CometSwap-FrontEnd 目录下创建 .env.local
 cp .env.example .env.local  # 如果有模板
 # 或直接创建新文件
 ```
@@ -47,10 +47,10 @@ NEXT_PUBLIC_MERKLE_DISTRIBUTOR_XLAYER=0x...
 
 ### **✅ 合约部署状态**
 
-- [ ] ✅ PLANET Token 已部署
+- [ ] ✅ COMET Token 已部署
 - [ ] ✅ WOKB (Wrapped OKB) 已部署  
-- [ ] ✅ PlanetFactory 已部署
-- [ ] ✅ PlanetRouter 已部署
+- [ ] ✅ CometFactory 已部署
+- [ ] ✅ CometRouter 已部署
 - [ ] ✅ MasterChef 已部署
 - [ ] ✅ MerkleDistributor 已部署
 
@@ -67,7 +67,7 @@ NEXT_PUBLIC_MERKLE_DISTRIBUTOR_XLAYER=0x...
 
 ### **1. 安装依赖**
 ```bash
-cd PlanetSwap-FrontEnd
+cd CometSwap-FrontEnd
 npm install
 # 或
 yarn install

@@ -3,7 +3,7 @@ import { usePublicClient } from 'wagmi'
 import { Address, parseUnits, formatUnits } from 'viem'
 import { getCurrentContracts } from '../../lib/wagmi'
 import { Token } from '../contracts/useTokens'
-import PlanetRouterABI from '../../contracts/abis/PlanetRouter.json'
+import PlanetRouterABI from '../../contracts/abis/CometRouter.json'
 
 export interface PriceData {
   inputAmount: string

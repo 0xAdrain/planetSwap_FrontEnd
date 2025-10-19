@@ -3,6 +3,8 @@ import { useAccount, useReadContract, useReadContracts, useBalance, useChainId }
 import { Address, formatUnits, parseUnits } from 'viem';
 import { getCurrentContracts } from '../../lib/wagmi';
 import { getTokenListForChain, Token } from '../../config/tokens';
+
+export type { Token } from '../../config/tokens';
 import ERC20ABI from '../../contracts/abis/ERC20.json';
 
 // 🔧 useTokens Hook - Multi-chain support

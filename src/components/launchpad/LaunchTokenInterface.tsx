@@ -1257,7 +1257,7 @@ export default function LaunchTokenInterface() {
       <Header>
         <Title>Launched</Title>
         <Subtitle>
-          PlanetSwap: A secure and rapid multichain launchpad for everyone. Remember always DYOR.
+          CometSwap: A secure and rapid multichain launchpad for everyone. Remember always DYOR.
         </Subtitle>
         <StatusBadges>
           <StatusBadge variant="success">
@@ -1503,7 +1503,7 @@ export default function LaunchTokenInterface() {
 
 
       <Footer>
-        ©2025 launched in PlanetSwap
+        ©2025 launched in CometSwap
       </Footer>
     </Container>
   );

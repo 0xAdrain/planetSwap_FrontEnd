@@ -217,25 +217,25 @@ function TradingStats() {
 
   const topPairs: TradingPair[] = [
     {
-      name: 'OKB/PLANET',
+      name: 'OKB/COMET',
       icons: '🪙🌱',
       volume24h: '$1,245,600',
       change: { value: '+18.5%', positive: true }
     },
     {
-      name: 'USDT/PLANET',
+      name: 'USDT/COMET',
       icons: '💵🌱',
       volume24h: '$890,200',
       change: { value: '+12.3%', positive: true }
     },
     {
-      name: 'ETH/PLANET',
+      name: 'ETH/COMET',
       icons: '⚡🌱',
       volume24h: '$567,800',
       change: { value: '-5.2%', positive: false }
     },
     {
-      name: 'BTC/PLANET',
+      name: 'BTC/COMET',
       icons: '₿🌱',
       volume24h: '$234,500',
       change: { value: '+8.9%', positive: true }
@@ -243,13 +243,13 @@ function TradingStats() {
   ];
 
   const recentTrades: RecentTrade[] = [
-    { type: 'buy', amount: '1,250 PLANET', time: '2分钟前' },
-    { type: 'sell', amount: '890 PLANET', time: '3分钟前' },
-    { type: 'buy', amount: '2,100 PLANET', time: '5分钟前' },
-    { type: 'sell', amount: '675 PLANET', time: '7分钟前' },
-    { type: 'buy', amount: '1,840 PLANET', time: '9分钟前' },
-    { type: 'buy', amount: '3,200 PLANET', time: '12分钟前' },
-    { type: 'sell', amount: '1,450 PLANET', time: '15分钟前' }
+    { type: 'buy', amount: '1,250 COMET', time: '2分钟前' },
+    { type: 'sell', amount: '890 COMET', time: '3分钟前' },
+    { type: 'buy', amount: '2,100 COMET', time: '5分钟前' },
+    { type: 'sell', amount: '675 COMET', time: '7分钟前' },
+    { type: 'buy', amount: '1,840 COMET', time: '9分钟前' },
+    { type: 'buy', amount: '3,200 COMET', time: '12分钟前' },
+    { type: 'sell', amount: '1,450 COMET', time: '15分钟前' }
   ];
 
   return (

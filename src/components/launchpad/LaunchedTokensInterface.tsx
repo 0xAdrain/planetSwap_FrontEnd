@@ -327,7 +327,7 @@ export default function LaunchedTokensInterface() {
     { id: 'new', label: 'New' },
     { id: 'mecreate', label: 'ME CREATE' },
     { id: 'following', label: 'Following' },
-    { id: 'inPlanetSwap', label: 'In PlanetSwap List' },
+    { id: 'inPlanetSwap', label: 'In CometSwap List' },
   ];
 
   const filteredTokens = mockTokens.filter(token => {

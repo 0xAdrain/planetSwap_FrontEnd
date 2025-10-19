@@ -1,4 +1,4 @@
-// 🌍 PlanetSwap 多链配置统一入口
+// 🌍 CometSwap 多链配置统一入口
 // Fork from: pancake-frontend-develop/packages/chains/src/index.ts
 
 // 链ID和枚举

@@ -408,7 +408,7 @@ export default function StakeInterface() {
   return (
     <Container>
       <Header>
-        <Title>Stake PLANET</Title>
+        <Title>Stake COMET</Title>
         <Description>
           Stake platform tokens and share 50% of platform revenue
         </Description>
@@ -417,12 +417,12 @@ export default function StakeInterface() {
       <StatsGrid>
         <StatCard whileHover={{ scale: 1.02 }}>
           <StatLabel>Total Staked</StatLabel>
-          <StatValue>1,250,000 PLANET</StatValue>
+          <StatValue>1,250,000 COMET</StatValue>
         </StatCard>
 
         <StatCard whileHover={{ scale: 1.02 }}>
           <StatLabel>Your Staked</StatLabel>
-          <StatValue>0 PLANET</StatValue>
+          <StatValue>0 COMET</StatValue>
         </StatCard>
 
         <StatCard whileHover={{ scale: 1.02 }}>
@@ -432,7 +432,7 @@ export default function StakeInterface() {
 
         <StatCard whileHover={{ scale: 1.02 }}>
           <StatLabel>Your Rewards</StatLabel>
-          <StatValue>0 PLANET</StatValue>
+          <StatValue>0 COMET</StatValue>
         </StatCard>
       </StatsGrid>
 
@@ -460,7 +460,7 @@ export default function StakeInterface() {
           <InfoBox>
             <InfoRow>
               <InfoLabel>Balance:</InfoLabel>
-              <InfoValue>1,000 PLANET</InfoValue>
+              <InfoValue>1,000 COMET</InfoValue>
             </InfoRow>
             <InfoRow>
               <InfoLabel>You will receive:</InfoLabel>
@@ -474,7 +474,7 @@ export default function StakeInterface() {
             whileTap={{ scale: 0.98 }}
             disabled={!stakeAmount || parseFloat(stakeAmount) <= 0}
           >
-            Stake PLANET
+            Stake COMET
           </ActionButton>
         </StakeCard>
 
@@ -505,7 +505,7 @@ export default function StakeInterface() {
             </InfoRow>
             <InfoRow>
               <InfoLabel>You will receive:</InfoLabel>
-              <InfoValue>{unstakeAmount || '0'} PLANET</InfoValue>
+              <InfoValue>{unstakeAmount || '0'} COMET</InfoValue>
             </InfoRow>
           </InfoBox>
 
@@ -515,7 +515,7 @@ export default function StakeInterface() {
             whileTap={{ scale: 0.98 }}
             disabled={!unstakeAmount || parseFloat(unstakeAmount) <= 0}
           >
-            Unstake PLANET
+            Unstake COMET
           </ActionButton>
         </StakeCard>
       </div>

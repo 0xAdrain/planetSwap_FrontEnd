@@ -1,4 +1,4 @@
-// 🌍 PlanetSwap 链名称配置
+// 🌍 CometSwap 链名称配置
 // Fork from: pancake-frontend-develop/packages/chains/src/chainNames.ts
 
 import { ChainId, NonEVMChainId, UnifiedChainId } from './chainId'

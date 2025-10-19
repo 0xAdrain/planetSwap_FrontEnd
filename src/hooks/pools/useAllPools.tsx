@@ -4,7 +4,7 @@ import { formatUnits, Address } from 'viem'
 import { Token, useTokens } from '../contracts/useTokens'
 import { getContractAddresses } from '../../config/chains/contracts'
 import { ChainId } from '../../config/chains/chainId'
-import PlanetFactoryV2ABI from '../../contracts/abis/PlanetFactory.json'
+import PlanetFactoryV2ABI from '../../contracts/abis/CometFactory.json'
 import PlanetPairV2ABI from '../../contracts/abis/PlanetPairV2.json'
 import ERC20ABI from '../../contracts/abis/ERC20.json'
 
